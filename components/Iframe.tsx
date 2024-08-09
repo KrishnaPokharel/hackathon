@@ -30,22 +30,24 @@ const Iframe = () => {
     if (response[0]?.data?.data[0]?.Activity_input_form) {
       console.log("xiro");
       setFormLink(response[0].data.data[0].Activity_input_form);
+      console.log(response[0].data.data[0].Activity_input_form);
       setRender(true);
     }
   };
 
   return (
     <>
-      {render && (
+      {render ?(
         <div style={{ height: "100vh", width: "100%" }}>
           <iframe
-            src={formLink}
+            src={`${formLink}?ref='er'`}
             width="100%"
             height="100%"
             allowFullScreen
           ></iframe>
         </div>
-      )}
+      ):(
+        <>Loading...</>      )}
     </>
   );
 };

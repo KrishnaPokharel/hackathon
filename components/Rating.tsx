@@ -21,7 +21,7 @@ const Rating = () => {
           headers: {
             Authorization: " X(3jPS@yD$xk@%9Tjr3(9n$B",
           },
-          url: "https://flask-api.speedrent.com/zoho/get-data-from-zoho?module_name=Bytebricks_properties&param=erff",
+          url: "https://flask-api.speedrent.com/zoho/get-data-from-zoho?module_name=Bytebricks_properties&param=er",
           data: {},
         }),
       ]);
@@ -214,530 +214,606 @@ const Rating = () => {
     loadData();
   }, []);
 
+
+
+  const checkMethod = (value:any) =>{
+    if(value > 4){
+      return 'great'
+    }
+    else if(value>3 && value<=4){
+      return 'good'
+    }
+    else if(value>2 && value<=3){
+      return 'acceptable'
+    }
+    else if(value>1 && value<=2){
+      return 'poor'
+    }
+    else{
+      return 'worse'
+    }
+  }
   return (
     <>
-      {render ? (
-        <div className="mt-4">
-          {extentContent && (
-            <div
-              className="relative z-10"
-              aria-labelledby="modal-title"
-              role="dialog"
-              aria-modal="true"
-            >
-              <div
-                className="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity"
-                aria-hidden="true"
-              ></div>
-
-              <div className="fixed inset-0 z-10 w-screen overflow-y-auto">
-                <div className="flex min-h-full items-end justify-center p-4 text-center sm:items-center sm:p-0">
-                  <div className="relative transform overflow-hidden rounded-lg bg-white text-left shadow-xl transition-all sm:my-8 w-[50%]">
-                    <div className="bg-white px-4 pb-4 pt-5 sm:p-6 sm:pb-4">
-                      <div className=" border border-slate-300 p-3 relative">
-                        <div
-                          className="absolute top-1 right-1 cursor-pointer"
-                          onClick={(e) => setExtentContent(false)}
-                        >
-                          <CircleX size={18} />
-                        </div>
-
-                        <div className="">
-                          <div className="grid gap-x-10 grid-cols-12">
-                            <div className="col-span-4 px-2  border-r border-slate-400">
-                              <div className="rating flex flex-col items-center">
-                                <div className="flex items-center text-black font-semibold">
-                                  <span className="text-3xl">
-                                    {allData.Rating}
-                                  </span>
-                                  <Star
-                                    size={30}
-                                    className="ml-1 text-yellow-500"
-                                  />
-                                </div>
-                                <div className="flex items-center bg-green-600 mt-2 p-2 rounded-full text-white text-sm">
-                                  <BadgeCheck size={20} color="#fff" />
-                                  <span className="ml-2">
-                                    Verified by Speedhome
-                                  </span>
-                                </div>
-                                .
-                              </div>
-
-                              <div className="tab_section">
-                                {/* tab buttons */}
-                                <div
-                                  className={
-                                    active === "property"
-                                      ? "bg-slate-200 cursor-pointer  flex justify-between rounded-[15px] p-2"
-                                      : "bg-slate-100 cursor-pointer flex justify-between rounded-[15px] p-2"
-                                  }
-                                  onClick={(e) => setActive("property")}
-                                >
-                                  <div className="flex items-center">
-                                    <span>Property rating</span>
-                                    <CircleHelp size={15} className="ml-1" />
-                                  </div>
-                                  <div className="">
-                                    <div className="flex items-center text-black font-semibold">
-                                      <span className="text-lg">
-                                        {(
-                                          (summaryData.totalAmenities +
-                                            summaryData.totalCondition) /
-                                          2
-                                        ).toFixed(1)}
-                                      </span>
-                                      <Star
-                                        size={20}
-                                        className="ml-1 text-yellow-500"
-                                      />
-                                    </div>
-                                  </div>
-                                </div>
-
-                                {active === "property" && (
-                                  <div className="px-3 mt-2">
-                                    <div className="flex justify-between my-2">
-                                      <span className="text-sm">
-                                        Conditions
-                                      </span>
-                                      <div className="flex items-center text-black font-semibold">
-                                        <span className="text-sm">
-                                          {summaryData.totalCondition.toFixed(
-                                            1
-                                          )}
-                                        </span>
-                                        <Star
-                                          size={15}
-                                          className="ml-1 text-yellow-500"
-                                        />
-                                      </div>
-                                    </div>
-
-                                    <div className="flex justify-between my-2">
-                                      <span className="text-sm">
-                                        Ammenities
-                                      </span>
-                                      <div className="flex items-center text-black font-semibold">
-                                        <span className="text-sm">
-                                          {summaryData.totalAmenities.toFixed(
-                                            1
-                                          )}
-                                        </span>
-                                        <Star
-                                          size={15}
-                                          className="ml-1 text-yellow-500"
-                                        />
-                                      </div>
-                                    </div>
-
-                                    <div className="flex justify-between my-2">
-                                      <span className="text-sm">Utilities</span>
-                                      <div className="flex items-center text-black font-semibold">
-                                        <span className="text-sm">-</span>
-                                        {/* <Star
-                                          size={15}
-                                          className="ml-1 text-yellow-500"
-                                        /> */}
-                                      </div>
-                                    </div>
-                                  </div>
-                                )}
-
-                                <div
-                                  className={
-                                    active === "building"
-                                      ? "bg-slate-200 mt-5 cursor-pointer flex justify-between rounded-[15px] p-2"
-                                      : "bg-slate-100 mt-5 cursor-pointer flex justify-between rounded-[15px] p-2"
-                                  }
-                                  onClick={(e) => setActive("building")}
-                                >
-                                  <div className="flex items-center">
-                                    <span>Building rating</span>
-                                    <CircleHelp size={15} className="ml-1" />
-                                  </div>
-                                  <div className="">
-                                    <div className="flex items-center text-black font-semibold">
-                                      <span className="text-lg">{(
-                                          (summaryData.totalAmenities +
-                                            summaryData.totalCondition) /
-                                          2
-                                        ).toFixed(1)}</span>
-                                      <Star
-                                        size={20}
-                                        className="ml-1 text-yellow-500"
-                                      />
-                                    </div>
-                                  </div>
-                                </div>
-
-                                {active === "building" && (
-                                  <div className="px-3 mt-2">
-                                    <div className="flex justify-between my-2">
-                                      <span className="text-sm">
-                                        Conditions
-                                      </span>
-                                      <div className="flex items-center text-black font-semibold">
-                                        <span className="text-sm">
-                                        {summaryData.totalCondition.toFixed(
-                                            1
-                                          )}
-                                        </span>
-                                        <Star
-                                          size={15}
-                                          className="ml-1 text-yellow-500"
-                                        />
-                                      </div>
-                                    </div>
-
-                                    <div className="flex justify-between my-2">
-                                      <span className="text-sm">
-                                        Ammenities
-                                      </span>
-                                      <div className="flex items-center text-black font-semibold">
-                                        <span className="text-sm"> {summaryData.totalAmenities.toFixed(
-                                            1
-                                          )}</span>
-                                        <Star
-                                          size={15}
-                                          className="ml-1 text-yellow-500"
-                                        />
-                                      </div>
-                                    </div>
-
-                                    <div className="flex justify-between my-2">
-                                      <span className="text-sm">Utilities</span>
-                                      <div className="flex items-center text-black font-semibold">
-                                        <span className="text-sm">-</span>
-                                        
-                                      </div>
-                                    </div>
-                                  </div>
-                                )}
-                              </div>
+    {
+        render ? (
+          <div className="">
+          <div className="property-image">
+            <Image
+              src={"/propertySS.png"}
+              width={1000}
+              height={1000}
+              className="w-full h-full"
+              alt="property"
+            />
+          </div>
+    
+          <div className="global_padding mt-3">
+            <div className="grid grid-cols-4 gap-x-10">
+              <div className="col-span-3">
+                <Image
+                  src={"/ppname.png"}
+                  width={1000}
+                  height={1000}
+                  className="w-full h-auto"
+                  alt="logo"
+                />
+    
+                <div className="mb-4">
+                <div className="mt-4">
+              {extentContent && (
+                <div
+                  className="relative z-10"
+                  aria-labelledby="modal-title"
+                  role="dialog"
+                  aria-modal="true"
+                >
+                  <div
+                    className="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity"
+                    aria-hidden="true"
+                  ></div>
+    
+                  <div className="fixed inset-0 z-10 w-screen overflow-y-auto">
+                    <div className="flex min-h-full items-end justify-center p-4 text-center sm:items-center sm:p-0">
+                      <div className="relative transform overflow-hidden rounded-lg bg-white text-left shadow-xl transition-all sm:my-8 w-[70%]">
+                        <div className="bg-white px-4 pb-4 pt-5 sm:p-6 sm:pb-4">
+                          <div className=" border border-slate-300 p-3 relative">
+                            <div
+                              className="absolute top-1 right-1 cursor-pointer"
+                              onClick={(e) => setExtentContent(false)}
+                            >
+                              <CircleX size={18} />
                             </div>
-                            <div className="col-span-8 px-2">
-                              {active === "property" && (
-                                <div>
-                                  <span className="text-xl font-semibold block">
-                                    About the property
-                                  </span>
-                                  <span className="text-2xl block mt-3">
-                                    Inspection Report
-                                  </span>
-
-                                  <div className="tab_buttons flex gap-x-5 mt-3 items-center">
-                                    <button
-                                      className={
-                                        tabActive === "conditions"
-                                          ? "bg-primary rounded-[25px] p-3"
-                                          : "bg-slate-300  rounded-[25px] p-3"
-                                      }
-                                      onClick={(e) =>
-                                        setTabActive("conditions")
-                                      }
-                                    >
-                                      Conditions
-                                    </button>
-                                    <button
-                                      className={
-                                        tabActive === "ammenities"
-                                          ? "bg-primary rounded-[25px] p-3"
-                                          : "bg-slate-300  rounded-[25px] p-3"
-                                      }
-                                      onClick={(e) =>
-                                        setTabActive("ammenities")
-                                      }
-                                    >
-                                      Ammenities
-                                    </button>
-                                    <button
-                                      className={
-                                        tabActive === "utilities"
-                                          ? "bg-primary rounded-[25px] p-3"
-                                          : "bg-slate-300  rounded-[25px] p-3"
-                                      }
-                                      onClick={(e) => setTabActive("utilities")}
-                                    >
-                                      Utilities
-                                    </button>
+    
+                            <div className="">
+                              <div className="grid gap-x-10 grid-cols-12">
+                                <div className="col-span-4 px-2  border-r border-slate-400">
+                                  <div className="rating flex flex-col items-center">
+                                    <div className="flex items-center text-black font-semibold">
+                                      <span className="text-3xl">
+                                        {allData.Rating}
+                                      </span>
+                                      <Star
+                                        size={30}
+                                        className="ml-1 text-yellow-500"
+                                      />
+                                    </div>
+                                    <div className="flex items-center bg-green-600 mt-2 p-2 rounded-full text-white text-sm">
+                                      <BadgeCheck size={20} color="#fff" />
+                                      <span className="ml-2">
+                                        Verified by Speedhome
+                                      </span>
+                                    </div>
+                                    .
                                   </div>
-
-                                  <div className="mt-8">
-                                    {tabActive === "conditions" && (
+    
+                                  <div className="tab_section">
+                                    {/* tab buttons */}
+                                    <div
+                                      className={
+                                        active === "property"
+                                          ? "bg-slate-200 cursor-pointer  flex justify-between rounded-[15px] p-2"
+                                          : "bg-slate-100 cursor-pointer flex justify-between rounded-[15px] p-2"
+                                      }
+                                      onClick={(e) => setActive("property")}
+                                    >
+                                      <div className="flex items-center">
+                                        <span>Property rating</span>
+                                        <CircleHelp size={15} className="ml-1" />
+                                      </div>
                                       <div className="">
-                                        <div className="flex items-center my-4">
-                                          <div className="w-5 h-5 bg-green-500 rounded-full"></div>
-                                          <div className="ml-3 flex gap-x-10">
-                                            <span>
-                                              Noise level is accecptable range.
+                                        <div className="flex items-center text-black font-semibold">
+                                          <span className="text-lg">
+                                            {allData.Rating.toFixed(1)}
+                                          </span>
+                                          <Star
+                                            size={20}
+                                            className="ml-1 text-yellow-500"
+                                          />
+                                        </div>
+                                      </div>
+                                    </div>
+    
+                                    {active === "property" && (
+                                      <div className="px-3 mt-2">
+                                        <div className="flex justify-between my-2">
+                                          <span className="text-sm">
+                                            Conditions
+                                          </span>
+                                          <div className="flex items-center text-black font-semibold">
+                                            <span className="text-sm">
+                                              {summaryData.totalCondition.toFixed(
+                                                1
+                                              )}
                                             </span>
-                                            <div className="flex items-center text-black font-semibold">
-                                              <span className="text-sm">
-                                                {summaryData.totalNoise.toFixed(
-                                                  1
-                                                )}
-                                              </span>
-                                              <Star
-                                                size={15}
-                                                className="ml-1 text-yellow-500"
-                                              />
-                                            </div>
+                                            <Star
+                                              size={15}
+                                              className="ml-1 text-yellow-500"
+                                            />
                                           </div>
                                         </div>
-
-                                        <div className="flex items-center my-4">
-                                          <div className="w-5 h-5 bg-green-500 rounded-full"></div>
-                                          <div className="ml-3 flex gap-x-10">
-                                            <span>Property Odour is great</span>
-                                            <div className="flex items-center text-black font-semibold">
-                                              <span className="text-sm">
-                                                {summaryData.propertyOdor.toFixed(
-                                                  1
-                                                )}
-                                              </span>
-                                              <Star
-                                                size={15}
-                                                className="ml-1 text-yellow-500"
-                                              />
-                                            </div>
+    
+                                        <div className="flex justify-between my-2">
+                                          <span className="text-sm">
+                                            Ammenities
+                                          </span>
+                                          <div className="flex items-center text-black font-semibold">
+                                            <span className="text-sm">
+                                              {summaryData.totalAmenities.toFixed(
+                                                1
+                                              )}
+                                            </span>
+                                            <Star
+                                              size={15}
+                                              className="ml-1 text-yellow-500"
+                                            />
                                           </div>
                                         </div>
-
-                                        <div className="flex items-center my-4">
-                                          <div className="w-5 h-5 bg-yellow-500 rounded-full"></div>
-                                          <div className="ml-3 flex gap-x-10">
-                                            <span>Air quality is poor</span>
-                                            <div className="flex items-center text-black font-semibold">
-                                              <span className="text-sm">
-                                                {summaryData.AirQuality.toFixed(
-                                                  1
-                                                )}
-                                              </span>
-                                              <Star
-                                                size={15}
-                                                className="ml-1 text-yellow-500"
-                                              />
-                                            </div>
+    
+                                        <div className="flex justify-between my-2">
+                                          <span className="text-sm">Utilities</span>
+                                          <div className="flex items-center text-black font-semibold">
+                                            <span className="text-sm">-</span>
+                                            {/* <Star
+                                              size={15}
+                                              className="ml-1 text-yellow-500"
+                                            /> */}
                                           </div>
                                         </div>
                                       </div>
                                     )}
-
-                                    {tabActive === "ammenities" && (
+    
+                                    <div
+                                      className={
+                                        active === "building"
+                                          ? "bg-slate-200 mt-5 cursor-pointer flex justify-between rounded-[15px] p-2"
+                                          : "bg-slate-100 mt-5 cursor-pointer flex justify-between rounded-[15px] p-2"
+                                      }
+                                      onClick={(e) => setActive("building")}
+                                    >
+                                      <div className="flex items-center">
+                                        <span>Building rating</span>
+                                        <CircleHelp size={15} className="ml-1" />
+                                      </div>
                                       <div className="">
-                                        <div className="flex items-center my-4">
-                                          <div className="w-5 h-5 bg-green-500 rounded-full"></div>
-                                          <div className="ml-3 flex gap-x-10">
-                                            <span>
-                                              Functionality of Appliance is
-                                              Great.
+                                        <div className="flex items-center text-black font-semibold">
+                                          <span className="text-lg">{(
+                                              (summaryData.totalAmenities +
+                                                summaryData.totalCondition) /
+                                              2
+                                            ).toFixed(1)}</span>
+                                          <Star
+                                            size={20}
+                                            className="ml-1 text-yellow-500"
+                                          />
+                                        </div>
+                                      </div>
+                                    </div>
+    
+                                    {active === "building" && (
+                                      <div className="px-3 mt-2">
+                                        <div className="flex justify-between my-2">
+                                          <span className="text-sm">
+                                            Conditions
+                                          </span>
+                                          <div className="flex items-center text-black font-semibold">
+                                            <span className="text-sm">
+                                            {summaryData.totalCondition.toFixed(
+                                                1
+                                              )}
                                             </span>
-                                            <div className="flex items-center text-black font-semibold">
-                                              <span className="text-sm">
-                                                {summaryData.amenitiesAppliances.toFixed(
-                                                  1
-                                                )}
-                                              </span>
-                                              <Star
-                                                size={15}
-                                                className="ml-1 text-yellow-500"
-                                              />
-                                            </div>
+                                            <Star
+                                              size={15}
+                                              className="ml-1 text-yellow-500"
+                                            />
                                           </div>
                                         </div>
-
-                                        <div className="flex items-center my-4">
-                                          <div className="w-5 h-5 bg-green-500 rounded-full"></div>
-                                          <div className="ml-3 flex gap-x-10">
-                                            <span>
-                                              Functionality of Furniture is
-                                              Okay.
-                                            </span>
-                                            <div className="flex items-center text-black font-semibold">
-                                              <span className="text-sm">
-                                                {summaryData.amenitiesFurniture.toFixed(
-                                                  1
-                                                )}
-                                              </span>
-                                              <Star
-                                                size={15}
-                                                className="ml-1 text-yellow-500"
-                                              />
-                                            </div>
+    
+                                        <div className="flex justify-between my-2">
+                                          <span className="text-sm">
+                                            Ammenities
+                                          </span>
+                                          <div className="flex items-center text-black font-semibold">
+                                            <span className="text-sm"> {summaryData.totalAmenities.toFixed(
+                                                1
+                                              )}</span>
+                                            <Star
+                                              size={15}
+                                              className="ml-1 text-yellow-500"
+                                            />
+                                          </div>
+                                        </div>
+    
+                                        <div className="flex justify-between my-2">
+                                          <span className="text-sm">Utilities</span>
+                                          <div className="flex items-center text-black font-semibold">
+                                            <span className="text-sm">-</span>
+                                            
                                           </div>
                                         </div>
                                       </div>
-                                    )}
-
-                                    {tabActive === "utilities" && (
-                                      <div className="">No result found</div>
                                     )}
                                   </div>
                                 </div>
-                              )}
-
-                              {active === "building" && (
-                                <div>
-                                  <span className="text-xl font-semibold block">
-                                    About the building
-                                  </span>
-                                  <div className="text-lg p-4 border  block mt-3">
-                                  General Info about the building
-                                  <div className="text-blue-500 underline cursor-pointer">More details</div>
-                                  </div>
-
-                                  <div className="tab_buttons flex gap-x-5 mt-3 items-center">
-                                    <button
-                                      className={
-                                        tabActive === "conditions"
-                                          ? "bg-primary rounded-[25px] p-3"
-                                          : "bg-slate-300  rounded-[25px] p-3"
-                                      }
-                                      onClick={(e) =>
-                                        setTabActive("conditions")
-                                      }
-                                    >
-                                      Conditions
-                                    </button>
-                                    <button
-                                      className={
-                                        tabActive === "ammenities"
-                                          ? "bg-primary rounded-[25px] p-3"
-                                          : "bg-slate-300  rounded-[25px] p-3"
-                                      }
-                                      onClick={(e) =>
-                                        setTabActive("ammenities")
-                                      }
-                                    >
-                                      Ammenities
-                                    </button>
-                                    <button
-                                      className={
-                                        tabActive === "utilities"
-                                          ? "bg-primary rounded-[25px] p-3"
-                                          : "bg-slate-300  rounded-[25px] p-3"
-                                      }
-                                      onClick={(e) => setTabActive("utilities")}
-                                    >
-                                      Utilities
-                                    </button>
-                                  </div>
-
-                                  <div className="mt-8">
-                                    {tabActive === "conditions" && (
-                                      <div className="">
-                                        <div className="flex items-center my-4">
-                                          <div className="w-5 h-5 bg-green-500 rounded-full"></div>
-                                          <div className="ml-3 flex gap-x-10">
-                                            <span>
-                                              Noise level is accecptable range.
-                                            </span>
-                                            <div className="flex items-center text-black font-semibold">
-                                              <span className="text-sm">
-                                                {summaryData.totalNoise.toFixed(
-                                                  1
-                                                )}
-                                              </span>
-                                              <Star
-                                                size={15}
-                                                className="ml-1 text-yellow-500"
-                                              />
-                                            </div>
-                                          </div>
-                                        </div>
-
-                                        <div className="flex items-center my-4">
-                                          <div className="w-5 h-5 bg-green-500 rounded-full"></div>
-                                          <div className="ml-3 flex gap-x-10">
-                                            <span>Property Odour is great</span>
-                                            <div className="flex items-center text-black font-semibold">
-                                              <span className="text-sm">
-                                                {summaryData.propertyOdor.toFixed(
-                                                  1
-                                                )}
-                                              </span>
-                                              <Star
-                                                size={15}
-                                                className="ml-1 text-yellow-500"
-                                              />
-                                            </div>
-                                          </div>
-                                        </div>
-
-                                        <div className="flex items-center my-4">
-                                          <div className="w-5 h-5 bg-yellow-500 rounded-full"></div>
-                                          <div className="ml-3 flex gap-x-10">
-                                            <span>Air quality is poor</span>
-                                            <div className="flex items-center text-black font-semibold">
-                                              <span className="text-sm">
-                                                {summaryData.AirQuality.toFixed(
-                                                  1
-                                                )}
-                                              </span>
-                                              <Star
-                                                size={15}
-                                                className="ml-1 text-yellow-500"
-                                              />
-                                            </div>
-                                          </div>
-                                        </div>
+                                <div className="col-span-8 px-2">
+                                  {active === "property" && (
+                                    <div>
+                                      <span className="text-xl font-semibold block">
+                                        About the property
+                                      </span>
+                                      <span className="text-2xl block mt-3">
+                                        Inspection Report
+                                      </span>
+    
+                                      <div className="tab_buttons flex gap-x-5 mt-3 items-center">
+                                        <button
+                                          className={
+                                            tabActive === "conditions"
+                                              ? "bg-primary rounded-[25px] p-3"
+                                              : "bg-slate-300  rounded-[25px] p-3"
+                                          }
+                                          onClick={(e) =>
+                                            setTabActive("conditions")
+                                          }
+                                        >
+                                          Conditions
+                                        </button>
+                                        <button
+                                          className={
+                                            tabActive === "ammenities"
+                                              ? "bg-primary rounded-[25px] p-3"
+                                              : "bg-slate-300  rounded-[25px] p-3"
+                                          }
+                                          onClick={(e) =>
+                                            setTabActive("ammenities")
+                                          }
+                                        >
+                                          Ammenities
+                                        </button>
+                                        <button
+                                          className={
+                                            tabActive === "utilities"
+                                              ? "bg-primary rounded-[25px] p-3"
+                                              : "bg-slate-300  rounded-[25px] p-3"
+                                          }
+                                          onClick={(e) => setTabActive("utilities")}
+                                        >
+                                          Utilities
+                                        </button>
                                       </div>
-                                    )}
+    
+                                      <div className="mt-8">
+                                        {tabActive === "conditions" && (
+                                          <div className="">
+                                            <div className="flex items-center my-4">
+                                              <div className={checkMethod(summaryData.totalNoise)==="great"||checkMethod(summaryData.totalNoise)==="good"?"w-5 h-5 bg-green-500 rounded-full":checkMethod(summaryData.totalNoise)==="acceptable"||checkMethod(summaryData.totalNoise)==="poor"?"w-5 h-5 bg-yellow-500 rounded-full":"w-5 h-5 bg-red-500 rounded-full"}></div>
+                                              <div className="ml-3 flex gap-x-10">
+                                                <span>
+                                                  Noise level is {checkMethod(summaryData.totalNoise)}.
+                                                </span>
+                                                <div className="flex items-center text-black font-semibold">
+                                                  <span className="text-sm">
+                                                    {summaryData.totalNoise.toFixed(
+                                                      1
+                                                    )}
+                                                  </span>
+                                                  <Star
+                                                    size={15}
+                                                    className="ml-1 text-yellow-500"
+                                                  />
+                                                </div>
+                                              </div>
+                                            </div>
+    
+                                            <div className="flex items-center my-4">
+                                              <div className={checkMethod(summaryData.propertyOdor)==="great"||checkMethod(summaryData.propertyOdor)==="good"?"w-5 h-5 bg-green-500 rounded-full":checkMethod(summaryData.propertyOdor)==="acceptable"||checkMethod(summaryData.propertyOdor)==="poor"?"w-5 h-5 bg-yellow-500 rounded-full":"w-5 h-5 bg-red-500 rounded-full"}></div>
+                                              <div className="ml-3 flex gap-x-10">
+                                                <span>Property Odour is {checkMethod(summaryData.propertyOdor)}</span>
+                                                <div className="flex items-center text-black font-semibold">
+                                                  <span className="text-sm">
+                                                    {summaryData.propertyOdor.toFixed(
+                                                      1
+                                                    )}
+                                                  </span>
+                                                  <Star
+                                                    size={15}
+                                                    className="ml-1 text-yellow-500"
+                                                  />
+                                                </div>
+                                              </div>
+                                            </div>
+    
+                                            <div className="flex items-center my-4">
+                                              <div className={checkMethod(summaryData.AirQuality)==="great"||checkMethod(summaryData.AirQuality)==="good"?"w-5 h-5 bg-green-500 rounded-full":checkMethod(summaryData.AirQuality)==="acceptable"||checkMethod(summaryData.AirQuality)==="poor"?"w-5 h-5 bg-yellow-500 rounded-full":"w-5 h-5 bg-red-500 rounded-full"}></div>
+                                              <div className="ml-3 flex gap-x-10">
+                                                <span>Air quality is {checkMethod(summaryData.AirQuality)}</span>
+                                                <div className="flex items-center text-black font-semibold">
+                                                  <span className="text-sm">
+                                                    {summaryData.AirQuality.toFixed(
+                                                      1
+                                                    )}
+                                                  </span>
+                                                  <Star
+                                                    size={15}
+                                                    className="ml-1 text-yellow-500"
+                                                  />
+                                                </div>
+                                              </div>
+                                            </div>
 
-                                    {tabActive === "ammenities" && (
-                                      <div className="">
-                                        <div className="flex items-center my-4">
-                                          <div className="w-5 h-5 bg-green-500 rounded-full"></div>
-                                          <div className="ml-3 flex gap-x-10">
-                                            <span>
-                                              Functionality of Appliance is
-                                              Great.
-                                            </span>
-                                            <div className="flex items-center text-black font-semibold">
-                                              <span className="text-sm">
-                                                {summaryData.amenitiesAppliances.toFixed(
-                                                  1
-                                                )}
-                                              </span>
-                                              <Star
-                                                size={15}
-                                                className="ml-1 text-yellow-500"
-                                              />
+                                            <div className="flex items-center my-4">
+                                              <div className={checkMethod(summaryData.wallClean)==="great"||checkMethod(summaryData.wallClean)==="good"?"w-5 h-5 bg-green-500 rounded-full":checkMethod(summaryData.wallClean)==="acceptable"||checkMethod(summaryData.wallClean)==="poor"?"w-5 h-5 bg-yellow-500 rounded-full":"w-5 h-5 bg-red-500 rounded-full"}></div>
+                                              <div className="ml-3 flex gap-x-10"></div>
+                                              <div className="ml-3 flex gap-x-10">
+                                                <span>Wall and Floor Cleaniness is {checkMethod(summaryData.wallClean)}</span>
+                                                <div className="flex items-center text-black font-semibold">
+                                                  <span className="text-sm">
+                                                    {summaryData.wallClean.toFixed(1)}
+                                                  </span>
+                                                  <Star
+                                                    size={15}
+                                                    className="ml-1 text-yellow-500"
+                                                  />
+                                                </div>
+                                              </div>
+                                            </div>
+
+                                            <div className="flex items-center my-4">
+                                              <div className={checkMethod(summaryData.Doorlock)==="great"||checkMethod(summaryData.Doorlock)==="good"?"w-5 h-5 bg-green-500 rounded-full":checkMethod(summaryData.Doorlock)==="acceptable"||checkMethod(summaryData.Doorlock)==="poor"?"w-5 h-5 bg-yellow-500 rounded-full":"w-5 h-5 bg-red-500 rounded-full"}></div>
+                                              <div className="ml-3 flex gap-x-10"></div>
+                                              <div className="ml-3 flex gap-x-10">
+                                                <span>Security is {checkMethod(summaryData.Doorlock)}</span>
+                                                <div className="flex items-center text-black font-semibold">
+                                                 
+                                                  <span className="text-sm">
+                                                    {summaryData.Doorlock.toFixed(1)}
+                                                  </span>
+                                                  <Star
+                                                    size={15}
+                                                    className="ml-1 text-yellow-500"
+                                                  />
+                                                </div>
+                                              </div>
                                             </div>
                                           </div>
-                                        </div>
-
-                                        <div className="flex items-center my-4">
-                                          <div className="w-5 h-5 bg-green-500 rounded-full"></div>
-                                          <div className="ml-3 flex gap-x-10">
-                                            <span>
-                                              Functionality of Furniture is
-                                              Okay.
-                                            </span>
-                                            <div className="flex items-center text-black font-semibold">
-                                              <span className="text-sm">
-                                                {summaryData.amenitiesFurniture.toFixed(
-                                                  1
-                                                )}
-                                              </span>
-                                              <Star
-                                                size={15}
-                                                className="ml-1 text-yellow-500"
-                                              />
+                                        )}
+    
+                                        {tabActive === "ammenities" && (
+                                          <div className="">
+                                          <div className="flex items-center my-4">
+                                              <div className={checkMethod(summaryData.amenitiesAppliances)==="great"||checkMethod(summaryData.amenitiesAppliances)==="good"?"w-5 h-5 bg-green-500 rounded-full":checkMethod(summaryData.amenitiesAppliances)==="acceptable"||checkMethod(summaryData.amenitiesAppliances)==="poor"?"w-5 h-5 bg-yellow-500 rounded-full":"w-5 h-5 bg-red-500 rounded-full"}></div>
+                                              <div className="ml-3 flex gap-x-10"></div>
+                                              <div className="ml-3 flex gap-x-10">
+                                                <span>
+                                                  Functionality of Appliance is {checkMethod(summaryData.amenitiesAppliances)}.
+                                                </span>
+                                                <div className="flex items-center text-black font-semibold">
+                                                  <span className="text-sm">
+                                                    {summaryData.amenitiesAppliances.toFixed(
+                                                      1
+                                                    )}
+                                                  </span>
+                                                  <Star
+                                                    size={15}
+                                                    className="ml-1 text-yellow-500"
+                                                  />
+                                                </div>
+                                              </div>
+                                            </div>
+    
+                                            <div className="flex items-center my-4">
+                                              <div className={checkMethod(summaryData.ammenitiesFurnitute)==="great"||checkMethod(summaryData.ammenitiesFurnitute)==="good"?"w-5 h-5 bg-green-500 rounded-full":checkMethod(summaryData.ammenitiesFurnitute)==="acceptable"||checkMethod(summaryData.ammenitiesFurnitute)==="poor"?"w-5 h-5 bg-yellow-500 rounded-full":"w-5 h-5 bg-red-500 rounded-full"}></div>
+                                              <div className="ml-3 flex gap-x-10"></div>
+                                              <div className="ml-3 flex gap-x-10">
+                                                <span>
+                                                  Functionality of Furniture is {checkMethod(summaryData.amenitiesFurniture)}.
+                                                </span>
+                                                <div className="flex items-center text-black font-semibold">
+                                                  <span className="text-sm">
+                                                    {summaryData.amenitiesFurniture.toFixed(
+                                                      1
+                                                    )}
+                                                  </span>
+                                                  <Star
+                                                    size={15}
+                                                    className="ml-1 text-yellow-500"
+                                                  />
+                                                </div>
+                                              </div>
                                             </div>
                                           </div>
-                                        </div>
+                                        )}
+    
+                                        {tabActive === "utilities" && (
+                                          <div className="">No result found</div>
+                                        )}
                                       </div>
-                                    )}
-
-                                    {tabActive === "utilities" && (
-                                      <div className="">No result found</div>
-                                    )}
-                                  </div>
+                                    </div>
+                                  )}
+    
+                                  {active === "building" && (
+                                    <div>
+                                      <span className="text-xl font-semibold block">
+                                        About the building
+                                      </span>
+                                      <div className="text-lg p-4 border  block mt-3">
+                                      General Info about the building
+                                      <div className="text-blue-500 underline cursor-pointer">More details</div>
+                                      </div>
+    
+                                      <div className="tab_buttons flex gap-x-5 mt-3 items-center">
+                                        <button
+                                          className={
+                                            tabActive === "conditions"
+                                              ? "bg-primary rounded-[25px] p-3"
+                                              : "bg-slate-300  rounded-[25px] p-3"
+                                          }
+                                          onClick={(e) =>
+                                            setTabActive("conditions")
+                                          }
+                                        >
+                                          Conditions
+                                        </button>
+                                        <button
+                                          className={
+                                            tabActive === "ammenities"
+                                              ? "bg-primary rounded-[25px] p-3"
+                                              : "bg-slate-300  rounded-[25px] p-3"
+                                          }
+                                          onClick={(e) =>
+                                            setTabActive("ammenities")
+                                          }
+                                        >
+                                          Ammenities
+                                        </button>
+                                        <button
+                                          className={
+                                            tabActive === "utilities"
+                                              ? "bg-primary rounded-[25px] p-3"
+                                              : "bg-slate-300  rounded-[25px] p-3"
+                                          }
+                                          onClick={(e) => setTabActive("utilities")}
+                                        >
+                                          Utilities
+                                        </button>
+                                      </div>
+    
+                                      <div className="mt-8">
+                                        {tabActive === "conditions" && (
+                                          <div className="">
+                                            <div className="flex items-center my-4">
+                                              <div className="w-5 h-5 bg-green-500 rounded-full"></div>
+                                              <div className="ml-3 flex gap-x-10">
+                                                <span>
+                                                  Noise level is accecptable range.
+                                                </span>
+                                                <div className="flex items-center text-black font-semibold">
+                                                  <span className="text-sm">
+                                                    {summaryData.totalNoise.toFixed(
+                                                      1
+                                                    )}
+                                                  </span>
+                                                  <Star
+                                                    size={15}
+                                                    className="ml-1 text-yellow-500"
+                                                  />
+                                                </div>
+                                              </div>
+                                            </div>
+    
+                                            <div className="flex items-center my-4">
+                                              <div className="w-5 h-5 bg-green-500 rounded-full"></div>
+                                              <div className="ml-3 flex gap-x-10">
+                                                <span>Property Odour is great</span>
+                                                <div className="flex items-center text-black font-semibold">
+                                                  <span className="text-sm">
+                                                    {summaryData.propertyOdor.toFixed(
+                                                      1
+                                                    )}
+                                                  </span>
+                                                  <Star
+                                                    size={15}
+                                                    className="ml-1 text-yellow-500"
+                                                  />
+                                                </div>
+                                              </div>
+                                            </div>
+    
+                                            <div className="flex items-center my-4">
+                                              <div className="w-5 h-5 bg-yellow-500 rounded-full"></div>
+                                              <div className="ml-3 flex gap-x-10">
+                                                <span>Air quality is poor</span>
+                                                <div className="flex items-center text-black font-semibold">
+                                                  <span className="text-sm">
+                                                    {summaryData.AirQuality.toFixed(
+                                                      1
+                                                    )}
+                                                  </span>
+                                                  <Star
+                                                    size={15}
+                                                    className="ml-1 text-yellow-500"
+                                                  />
+                                                </div>
+                                              </div>
+                                            </div>
+                                          </div>
+                                        )}
+    
+                                        {tabActive === "ammenities" && (
+                                          <div className="">
+                                            <div className="flex items-center my-4">
+                                              <div className="w-5 h-5 bg-green-500 rounded-full"></div>
+                                              <div className="ml-3 flex gap-x-10">
+                                                <span>
+                                                  Functionality of Appliance is
+                                                  Great.
+                                                </span>
+                                                <div className="flex items-center text-black font-semibold">
+                                                  <span className="text-sm">
+                                                    {summaryData.amenitiesAppliances.toFixed(
+                                                      1
+                                                    )}
+                                                  </span>
+                                                  <Star
+                                                    size={15}
+                                                    className="ml-1 text-yellow-500"
+                                                  />
+                                                </div>
+                                              </div>
+                                            </div>
+    
+                                            <div className="flex items-center my-4">
+                                              <div className="w-5 h-5 bg-green-500 rounded-full"></div>
+                                              <div className="ml-3 flex gap-x-10">
+                                                <span>
+                                                  Functionality of Furniture is
+                                                  Okay.
+                                                </span>
+                                                <div className="flex items-center text-black font-semibold">
+                                                  <span className="text-sm">
+                                                    {summaryData.amenitiesFurniture.toFixed(
+                                                      1
+                                                    )}
+                                                  </span>
+                                                  <Star
+                                                    size={15}
+                                                    className="ml-1 text-yellow-500"
+                                                  />
+                                                </div>
+                                              </div>
+                                            </div>
+                                          </div>
+                                        )}
+    
+                                        {tabActive === "utilities" && (
+                                          <div className="">No result found</div>
+                                        )}
+                                      </div>
+                                    </div>
+                                  )}
+                                  
                                 </div>
-                              )}
-                              
+                              </div>
                             </div>
                           </div>
                         </div>
@@ -745,35 +821,54 @@ const Rating = () => {
                     </div>
                   </div>
                 </div>
+              )}
+    
+              <div
+                className="border border-slate-300 p-3 flex justify-between items-center cursor-pointer"
+                onClick={(e) => setExtentContent(true)}
+              >
+                <div className="flex-1">
+                  <p className="text-sm text-gray-700">
+                    One of the top rated properties according to tenant feedback and
+                    professional inspections
+                  </p>
+                </div>
+                <div className="flex items-center space-x-3">
+                  <div className="flex items-center text-black font-semibold">
+                    <span className="text-2xl">{allData.Rating}</span>
+                    <Star size={20} className="ml-1 text-yellow-500" />
+                  </div>
+                  <div className="flex items-center bg-green-600 p-2 rounded-full text-white text-sm">
+                    <BadgeCheck size={20} color="#fff" />
+                    <span className="ml-2">Verified by Speedhome</span>
+                  </div>
+                </div>
               </div>
             </div>
-          )}
-
-          <div
-            className="border border-slate-300 p-3 flex justify-between items-center cursor-pointer"
-            onClick={(e) => setExtentContent(true)}
-          >
-            <div className="flex-1">
-              <p className="text-sm text-gray-700">
-                One of the top rated properties according to tenant feedback and
-                professional inspections
-              </p>
-            </div>
-            <div className="flex items-center space-x-3">
-              <div className="flex items-center text-black font-semibold">
-                <span className="text-2xl">{allData.Rating}</span>
-                <Star size={20} className="ml-1 text-yellow-500" />
+                </div>
+    
+                <Image src="/propertydetail.png" width={1000} height={1000} className="w-full h-auto" alt="test"/>
               </div>
-              <div className="flex items-center bg-green-600 p-2 rounded-full text-white text-sm">
-                <BadgeCheck size={20} color="#fff" />
-                <span className="ml-2">Verified by Speedhome</span>
+    
+              <div className="col-span-1">
+                <Image
+                  src={"/chat.png"}
+                  width={1000}
+                  height={1000}
+                  className="w-full h-auto sticky top-0"
+                  alt="logo"
+                />
               </div>
             </div>
           </div>
         </div>
-      ) : (
-        <div className="text-center">Loading...</div>
-      )}
+        ):(
+          <div className="text-center">
+            <span>Loading...</span>
+          </div>
+        )
+    }
+      
     </>
   );
 };

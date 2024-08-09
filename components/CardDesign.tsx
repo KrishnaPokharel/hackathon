@@ -16,7 +16,7 @@ const CardDesign = () => {
             headers:{
                 Authorization:" X(3jPS@yD$xk@%9Tjr3(9n$B"
             },
-            url: 'https://flask-api.speedrent.com/zoho/get-data-from-zoho?module_name=Bytebricks_properties&param=erff',
+            url: 'https://flask-api.speedrent.com/zoho/get-data-from-zoho?module_name=Bytebricks_properties&param=er',
             data:{}
         })
         if(response.status===200){
@@ -34,7 +34,7 @@ const CardDesign = () => {
     <>
      {
          render?(
-            <div className="grid grid-cols-4 gap-x-10">
+            <div className="grid grid-cols-3 gap-x-10">
                 {/* {console.log(allData)} */}
       <Link href={"/property-detail"}>
         <div className="shadow-md">
