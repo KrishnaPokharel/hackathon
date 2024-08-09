@@ -1,29 +1,47 @@
 "use client";
-import React, { useEffect } from "react";
+import React, { useEffect,useState } from "react";
 import { Star, Heart, Building, Bed } from "lucide-react";
 import useAuthFetch from "@/customhooks/AuthFetch";
 import Link from "next/link";
+import axios from "axios";
 
 const CardDesign = () => {
-  const authFetch = useAuthFetch();
+    const [render, setRender] = useState(false);
+    const [allData,setAllData] = useState<any>([])
+  
   const loadData = async () => {
     try {
-        const response = await authFetch('https://www.zohoapis.com/crm/v6/Bytebricks_Activities?')
-        console.log(response)
+        const response = await axios({
+            method: 'get',
+            headers:{
+                Authorization:" X(3jPS@yD$xk@%9Tjr3(9n$B"
+            },
+            url: 'https://flask-api.speedrent.com/zoho/get-data-from-zoho?module_name=Bytebricks_properties&param=erff',
+            data:{}
+        })
+        if(response.status===200){
+
+           setAllData(response.data.data[0])
+           setRender(true)
+        }
     } catch (error) {}
   };
   useEffect(() => {
     loadData()
-  });
+  },[]);
 
   return (
-    <div className="grid grid-cols-4 gap-x-10">
+    <>
+     {
+         render?(
+            <div className="grid grid-cols-4 gap-x-10">
+                {/* {console.log(allData)} */}
       <Link href={"/property-detail"}>
         <div className="shadow-md">
           {/* image */}
           <div className="grid grid-rows-2 grid-cols-2 h-52 relative">
-            <div className="absolute flex items-center font-semibold bg-black bg-opacity-35 top-2 right-2 p-1 rounded-[15px]">
-              <span>4.5</span>
+            <div className="absolute flex items-center font-semibold bg-black text-white px-3 bg-opacity-35 top-2 right-2 p-1 rounded-[15px]">
+              <span>{allData.Rating}</span>
               <Star size={15} className="ml-1" />
             </div>
             <div className="bg-red-500 row-span-2"></div>
@@ -86,6 +104,11 @@ const CardDesign = () => {
         </div>
       </Link>
     </div>
+        ):(
+            <div>Loading...</div>
+        )
+     }
+    </>
   );
 };
 
